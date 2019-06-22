@@ -1,4 +1,8 @@
 function sp=SplineCubicaNatural(x,an)
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Cada linha da matriz retornada é 
+  %% é uma equação da Spline Cubica
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   n = length(x);
   h = b = c = d = [];
   % step 1
@@ -30,10 +34,5 @@ function sp=SplineCubicaNatural(x,an)
     b(j) = (an(j+1)-an(j))/h(j) - (h(j)*(c(j+1)+2*c(j)))/3;
     d(j) = (c(j+1)-c(j))/(3*h(j));
   endfor
-  sp = zeros(4,n-1);
-  sp(1,:) = an(1:n-1);
-  sp(2,:) = b(1:n-1);
-  sp(3,:) = c(1:n-1);
-  sp(4,:) = d(1:n-1);
-  sp = sp';
+  sp = [an(1:n-1)', b(1:n-1)', c(1:n-1)', d(1:n-1)']; 
 endfunction

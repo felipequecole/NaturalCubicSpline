@@ -1,5 +1,10 @@
 function sp=SplineCubicaNaturalMat(x,an)
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  %% Cada linha da matriz retornada é 
+  %% é uma equação da Spline Cubica
+  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   n = length(x);
+  disp(n)
   h = b = c = d = [];
   % Calculo dos h(i)
   for i = 1:n-1
@@ -26,7 +31,7 @@ function sp=SplineCubicaNaturalMat(x,an)
   disp('b = ');
   disp(b);  
   % Resolver o sistema linear resulta nos c(i)  
-  c = A \ b';
+  c = (A \ b')';
   disp('c = ');
   disp(c(1:n-1)); 
   
@@ -36,11 +41,5 @@ function sp=SplineCubicaNaturalMat(x,an)
     b(i) = (1/h(i))*(an(i+1)-an(i)) - (h(i)/3)*(c(i+1) + 2*c(i));
     d(i) = (1/(3*h(i)))*(c(i+1)-c(i));
   endfor
-  
-  sp = zeros(4,n-1);
-  sp(1,:) = an(1:n-1);
-  sp(2,:) = b(1:n-1);
-  sp(3,:) = c(1:n-1);
-  sp(4,:) = d(1:n-1);
-  sp = sp';
+  sp = [an(1:n-1)', b(1:n-1)', c(1:n-1)', d(1:n-1)']; 
 endfunction
