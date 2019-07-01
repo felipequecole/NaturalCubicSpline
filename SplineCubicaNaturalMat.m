@@ -24,9 +24,8 @@ function sp=SplineCubicaNaturalMat(x,an)
   b = [];
   b(1) = 0;
   b(n) = 0;
-  alpha = [];
   for i = 2:n-1
-    alpha(i)= b(i) = ((3/h(i))*(an(i+1)-an(i)))-(3/h(i-1))*(an(i)-an(i-1));
+    b(i) = ((3/h(i))*(an(i+1)-an(i)))-(3/h(i-1))*(an(i)-an(i-1));
   endfor
   disp('b = ');
   disp(b);  
